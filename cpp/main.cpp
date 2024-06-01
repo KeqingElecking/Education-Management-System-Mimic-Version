@@ -8,38 +8,56 @@
 
 #include <iostream>
 #include <vector>
-#include <windows.h>
+#include <unordered_map>
 using namespace std;
 
 class SinhVien {
 private:
     string mssv;
     string hoTen;
-    vector<float> diemMonHoc;
+    unordered_map<string, float> grades;
+    float diemMonHoc[2];
 
 public:
+    string getMSSV() {
+        return mssv;
+    }
+
     void nhapThongTin() {
-        cout << "Nhap ma sinh vien: ";
+        cout << "---Thong Tin Sinh vien---\n";
+        cout << "Nhap mssv: ";
         cin >> mssv;
         cout << "Nhap ho ten: ";
-        cin >> hoTen;
-        cout << "Nhap diem cac mon hoc (cach nhau boi dau cach): ";
-        for (float& diem : diemMonHoc) {
-            cin >> diem;
-        }
+        cin.ignore();
+        getline(cin, hoTen);
+        // Cần thêm thông tin điểm cho từng môn học sử dụng map
+        cout << "Nhap diem qua trinh: ";
+        cin >> diemMonHoc[0];
+        cout << "Nhap diem cuoi ky: ";
+        cin >> diemMonHoc[1];
     }
 
-    void hienThiThongTin() {
-        cout << "Ma sinh vien: " << mssv << endl;
-        cout << "Ho ten: " << hoTen << endl;
-        cout << "Diem cac mon hoc: ";
-        for (float diem : diemMonHoc) {
-            cout << diem << " "; 
+    void hienThiThongTin(vector<SinhVien>& danhSachSinhVien) {
+        cout << "---Danh Sach Sinh vien---\n";
+        for (auto sv : danhSachSinhVien) {
+            cout << "Ma sinh vien: " << mssv << endl
+                << "Ho ten: " << hoTen << endl
+                << "Mon hoc: " << endl
+                << "    QT: " << diemMonHoc[0] << endl
+                << "    CK: " << diemMonHoc[1] << endl;
+            cout << endl;
         }
-        cout << endl;
+        system("pause");
     }
 
-    // ... them cac phuong thuc sua, xoa thong tin sinh vien
+    void suaThongTin(vector<SinhVien>& danhSachSinhVien) {
+        //... them code sua thong tin sinh vien
+    }
+
+
+    void xoaThongTin(vector<SinhVien>& danhSachSinhVien) {
+        //... them code xoa thong tin sinh vien
+    }
 };
 
 int main() {
@@ -47,17 +65,18 @@ int main() {
 
     int luaChon;
     do {
-        cout << "---------------------------------------------------------------\n";
-        cout << "He thong quan ly dao tao Hust - Phan he nhap diem cho sinh vien\n";
-        cout << "---------------------------------------------------------------\n";
-        cout << "\nMENU:\n";
-        cout << "1. Danh sach sinh vien\n";
-        cout << "2. Nhap diem\n";
-        cout << "3. Sua diem\n";
-        cout << "4. Xoa diem\n";
-        cout << "5. Xuat file diem theo dinh dang CSV\n";
-        cout << "0. Thoat\n";
-        cout << "Nhap lua chon: ";
+        system("cls");
+        cout << "---------------------------------------------------------------\n"
+        << "He thong quan ly dao tao Hust - Phan he nhap diem cho sinh vien\n"
+        << "---------------------------------------------------------------\n"
+        << "\nMENU:\n"
+        << "1. Danh sach sinh vien\n"
+        << "2. Nhap diem\n"
+        << "3. Sua diem\n"
+        << "4. Xoa diem\n"
+        << "5. Xuat file diem theo dinh dang CSV\n"
+        << "0. Thoat\n"
+        << "Nhap lua chon: ";
         cin >> luaChon;
 
         switch (luaChon) {
@@ -65,25 +84,28 @@ int main() {
             system("cls");
             if (danhSachSinhVien.empty()) {
                 cout << "Danh sach sinh vien trong!\n";
+                system("pause");
             } else {
-                for (SinhVien sinhVien : danhSachSinhVien) {
-                    sinhVien.hienThiThongTin();
-                }
+                danhSachSinhVien[0].hienThiThongTin(danhSachSinhVien);
             break;
+            }
         }
         case 2: {
+            system("cls");
             SinhVien sinhVienMoi;
+            cout<<"---Nhap thong tin sinh vien moi---\n";
             sinhVienMoi.nhapThongTin();
             danhSachSinhVien.push_back(sinhVienMoi);
-            }
+            cout<<"Xong!\n";
+            system("pause");
             break;
         }
         case 3: {
-            // ... them code sua thong tin sinh vien
+            // danhSachSinhVien[0].suaThongTin(danhSachSinhVien);
             break;
         }
         case 4: {
-            // ... them code xoa thong tin sinh vien
+            // danhSachSinhVien[0].xoaThongTin(danhSachSinhVien);
             break;
         }
         case 5: {
@@ -91,6 +113,7 @@ int main() {
             break;
         }
         case 0:
+            system("cls");
             cout << "Tam biet!\n";
             break;
         default:

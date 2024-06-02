@@ -18,5 +18,6 @@ public:
     void removeCourse(const std::string& courseName);
     std::string getId() const;
     std::string getName() const;
+    std::vector<Course> getCourses() const;
     void displayCourses() const;
 };

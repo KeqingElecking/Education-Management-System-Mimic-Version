@@ -1,8 +1,17 @@
+/*Nhóm 13 - Hệ thống quản lý đào tạo Hust - Phân hệ nhập điểm cho sinh viên
+Sinh viên:
+    1. Đặng Nhật Minh - 20224444
+    2. Đỗ Đặng Hoàng Linh - 2022
+    3. Phạm Việt Tùng - 2022
+    4. Trần Nhật Quang - 2022
+*/
 #include <iostream>
 #include "lib/StudentManager.cpp"
 #include "lib/Student.cpp"
 #include "lib/Course.cpp"
 
+/** @brief Display the main menu for user input.
+ *  @return void*/
 void displayMenu() {
     std::cout << "1. Display all students\n";
     std::cout << "2. Add a student\n";
@@ -76,6 +85,14 @@ int main() {
                 } else {
                     std::cout << "Student not found.\n";
                 }
+                break;
+            }
+            case 6:{
+                std::cout << "Enter filename (including extension): ";
+                std::cin >> filename;
+                std::cout << "Enter format (txt or csv): ";
+                std::cin >> format;
+                manager.exportData(filename, format);
                 break;
             }
             case 5: {

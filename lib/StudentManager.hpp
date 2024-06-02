@@ -12,4 +12,5 @@ public:
     void removeStudent(const std::string& studentId);
     Student* findStudent(const std::string& studentId);
     void displayAllStudents() const;
+    void exportData(const std::string& filename, const std::string& format) const;
 };

@@ -2,6 +2,10 @@
 #include <iostream>
 #include <fstream>
 
+/**
+ * @brief Display all students.
+ * @return void
+ */
 void StudentManager::displayAllStudents() const {
     if (students.empty()) {
         std::cout << "No students available.\n";
@@ -13,10 +17,20 @@ void StudentManager::displayAllStudents() const {
     }
 }
 
+/**
+ * @brief Add student to student manager.
+ * @param student
+ * @return void
+ */
 void StudentManager::addStudent(const Student& student) {
     students.push_back(student);
 }
 
+/**
+ * @brief Remove student from student manager.
+ * @param studentId
+ * @return void
+ */
 void StudentManager::removeStudent(const std::string& studentId) {
     for (auto it = students.begin(); it != students.end(); ++it) {
         if (it->getId() == studentId) {
@@ -27,6 +41,11 @@ void StudentManager::removeStudent(const std::string& studentId) {
     std::cout << "Student not found.\n";
 }
 
+/**
+ * @brief Find student by student ID.
+ * @param studentId
+ * @return Student*
+ */
 Student* StudentManager::findStudent(const std::string& studentId) {
     for (auto& student : students) {
         if (student.getId() == studentId) {
@@ -36,6 +55,12 @@ Student* StudentManager::findStudent(const std::string& studentId) {
     return nullptr;
 }
 
+/**
+ * @brief Export data to file.
+ * @param filename
+ * @param format
+ * @return void
+ */
 void StudentManager::exportData(const std::string& filename, const std::string& format) const {
     std::ofstream file(filename);
     if (!file.is_open()) {

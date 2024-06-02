@@ -3,7 +3,7 @@
 #include <fstream>
 
 /**
- * @brief Display all students.
+ * @brief Display all students and their courses' details.
  * @return void
  */
 void StudentManager::displayAllStudents() const {
@@ -18,7 +18,7 @@ void StudentManager::displayAllStudents() const {
 }
 
 /**
- * @brief Add student to student manager.
+ * @brief Add a new student to list.
  * @param student
  * @return void
  */
@@ -27,7 +27,7 @@ void StudentManager::addStudent(const Student& student) {
 }
 
 /**
- * @brief Remove student from student manager.
+ * @brief Remove a student from list.
  * @param studentId
  * @return void
  */
@@ -56,7 +56,7 @@ Student* StudentManager::findStudent(const std::string& studentId) {
 }
 
 /**
- * @brief Export data to file.
+ * @brief Export data to file (.txt or .csv).
  * @param filename
  * @param format
  * @return void
@@ -87,5 +87,5 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
     }
 
     file.close();
-    std::cout << "Data exported successfully to " << filename << std::endl;
+    std::cout << "Data exported successfully to " << filename << '!' << std::endl;
 }

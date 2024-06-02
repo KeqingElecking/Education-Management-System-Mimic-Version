@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Student.hpp"
+#include "Course.hpp"
 #include <vector>
 
 class StudentManager {

@@ -13,13 +13,16 @@ Sinh viên:
 /** @brief Display the main menu for user input.
  *  @return void*/
 void displayMenu() {
-    std::cout << "1. Display all students\n";
-    std::cout << "2. Add a student\n";
-    std::cout << "3. Add a course and scores for a student\n";
-    std::cout << "4. Edit a student's course scores\n";
-    std::cout << "5. Remove a student\n";
-    std::cout << "6. Export data to file\n";
-    std::cout << "0. Exit\n";
+    std::cout   << "*************************\n"
+                << "Student Management System\n"
+                << "*************************\n"
+                << "1. Display all students\n"
+                << "2. Add a student\n"
+                << "3. Add a course and scores for a student\n"
+                << "4. Edit a student's course scores\n"
+                << "5. Remove a student\n"
+                << "6. Export data to file\n"
+                << "0. Exit\n";
 }
 
 int main() {
@@ -40,6 +43,7 @@ int main() {
                 system("cls");
                 manager.displayAllStudents();
                 system("pause");
+                system("cls");
                 break;
             case 2: {
                 system("cls");
@@ -49,9 +53,13 @@ int main() {
                 std::cin.ignore();
                 std::getline(std::cin, studentName);
                 manager.addStudent(Student(studentId, studentName));
+                std::cout << "\tStudent added!\n";
                 break;
             }
             case 3: {
+                system("cls");
+                manager.displayAllStudents();
+                std::cout << "--------------------------------\n";
                 std::cout << "Enter student ID: ";
                 std::cin >> studentId;
                 Student* student = manager.findStudent(studentId);
@@ -64,12 +72,16 @@ int main() {
                     std::cout << "Enter final score: ";
                     std::cin >> final;
                     student->addCourse(Course(courseName, midterm, final));
+                    std::cout<<"\tCourse added!\n";
                 } else {
                     std::cout << "Student not found.\n";
                 }
                 break;
             }
             case 4: {
+                system("cls");
+                manager.displayAllStudents();
+                std::cout << "--------------------------------\n";
                 std::cout << "Enter student ID: ";
                 std::cin >> studentId;
                 Student* student = manager.findStudent(studentId);
@@ -82,9 +94,16 @@ int main() {
                     std::cout << "Enter new final score: ";
                     std::cin >> final;
                     student->editCourse(courseName, midterm, final);
+                    std::cout<<"\tCourse edited!\n";
                 } else {
                     std::cout << "Student not found.\n";
                 }
+                break;
+            }
+            case 5: {
+                std::cout << "Enter student ID to remove: ";
+                std::cin >> studentId;
+                manager.removeStudent(studentId);
                 break;
             }
             case 6:{
@@ -93,12 +112,6 @@ int main() {
                 std::cout << "Enter format (txt or csv): ";
                 std::cin >> format;
                 manager.exportData(filename, format);
-                break;
-            }
-            case 5: {
-                std::cout << "Enter student ID to remove: ";
-                std::cin >> studentId;
-                manager.removeStudent(studentId);
                 break;
             }
             case 0:

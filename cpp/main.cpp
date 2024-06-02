@@ -1,76 +1,158 @@
-// Nhóm 13 - 
-// Hệ thống quản lý đào tạo Hust - Phân hệ nhập điểm cho sinh viên
-// Sinh viên:
-// 1. Đặng Nhật Minh - 20224444
-// 2. Đỗ Đặng Hoàng Linh - 2022
-// 3. Phạm Việt Tùng - 2022
-// 4. Trần Nhật Quang - 2022
-
+/*Nhóm 13 - Hệ thống quản lý đào tạo Hust - Phân hệ nhập điểm cho sinh viên
+Sinh viên:
+    1. Đặng Nhật Minh - 20224444
+    2. Đỗ Đặng Hoàng Linh - 2022
+    3. Phạm Việt Tùng - 2022
+    4. Trần Nhật Quang - 2022
+*/
 #include <iostream>
-#include <vector>
-#include "sinhvien.hpp"
-using namespace std;
+#include "lib/StudentManager.cpp"
+#include "lib/Student.cpp"
+#include "lib/Course.cpp"
+
+/** @brief Display the main menu for user input.
+ *  @return void*/
+void displayMenu() {
+    std::cout   << "*************************\n"
+                << "Student Management System\n"
+                << "*************************\n"
+                << "1. Display all students\n"
+                << "2. Add a student\n"
+                << "3. Add a course and scores for a student\n"
+                << "4. Edit a student's course scores\n"
+                << "5. Remove a student\n"
+                << "6. Export data to file\n"
+                << "0. Exit\n";
+}
 
 int main() {
-    vector<SinhVien> danhSachSinhVien;
+    StudentManager manager;
+    int choice;
+    std::string studentId, studentName, courseName;
+    float midterm, final;
+    
+    std::string filename, format;
 
-    int luaChon;
     do {
-        system("cls");
-        cout << "---------------------------------------------------------------\n"
-        << "He thong quan ly dao tao Hust - Phan he nhap diem cho sinh vien\n"
-        << "---------------------------------------------------------------\n"
-        << "\nMENU:\n"
-        << "1. Danh sach sinh vien\n"
-        << "2. Nhap diem\n"
-        << "3. Sua diem\n"
-        << "4. Xoa diem\n"
-        << "5. Xuat file diem theo dinh dang CSV\n"
-        << "0. Thoat\n"
-        << "Nhap lua chon: ";
-        cin >> luaChon;
+        displayMenu();
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
-        switch (luaChon) {
-        case 1: {
-            system("cls");
-            if (danhSachSinhVien.empty()) {
-                cout << "Danh sach sinh vien trong!\n";
+        switch (choice) {
+            case 1:
+                system("cls");
+                manager.displayAllStudents();
                 system("pause");
-            } else {
-                danhSachSinhVien[0].hienThiThongTin(danhSachSinhVien);
-            break;
+                system("cls");
+                break;
+            case 2: {
+                system("cls");
+                std::cout << "Enter student ID (ex: 20220001): ";
+                std::cin >> studentId;
+                std::cout << "Enter student name (ex: Elon Musk): ";
+                std::cin.ignore();
+                std::getline(std::cin, studentName);
+                manager.addStudent(Student(studentId, studentName));
+                std::cout << "\tStudent added!\n";
+                break;
             }
+            case 3: {
+                system("cls");
+                manager.displayAllStudents();
+                if(manager.isEmpty()) break;
+                std::cout << "--------------------------------\n";
+                std::cout << "Enter student ID: ";
+                std::cin >> studentId;
+                Student* student = manager.findStudent(studentId);
+                if (student) {
+                    std::cout << "Enter course name (ex: KTLT): ";
+                    std::cin.ignore();
+                    std::getline(std::cin, courseName);
+                    std::cout << "Enter midterm score (ex: 9.5): ";
+                    std::cin >> midterm;
+                    std::cout << "Enter final score (ex: 9.5): ";
+                    std::cin >> final;
+                    student->addCourse(Course(courseName, midterm, final));
+                    std::cout<<"\tCourse added!\n";
+                } else {
+                    std::cout << "Student not found.\n";
+                }
+                break;
+            }
+            case 4: {
+                system("cls");
+                if(manager.isEmpty()){
+                    std::cout << "No student found.\n";
+                    break;
+                }
+                std::cout << "What do you want to edit?\n";
+                std::cout << "1. Edit student's information\n";
+                std::cout << "2. Edit student's course scores\n";
+                std::cout << "Enter your choice: ";
+                int editChoice;
+                std::cin >> editChoice;
+                switch (editChoice) {
+                    case 1: { 
+                        manager.displayAllStudents();
+                        if(manager.isEmpty()) break;
+                        std::cout << "--------------------------------\n";
+                        std::cout << "Enter student ID: ";
+                        std::cin >> studentId;
+                        Student* student = manager.findStudent(studentId);
+                        if (student) {
+                            std::cout << "Enter new student id: ";
+                            std::cin >> studentId;
+                            student->setId(studentId);
+                            std::cout << "Enter new student name: ";
+                            std::cin.ignore();
+                            std::getline(std::cin, studentName);
+                            student->setName(studentName);
+                            std::cout<<"\tStudent edited!\n";
+                        } else {
+                            std::cout << "Student not found.\n";
+                        }
+                        break;
+                    }
+                    case 2: {
+                        manager.displayAllStudents();
+                        if(manager.isEmpty()) break;
+                        std::cout << "--------------------------------\n";
+                        std::cout << "Enter student ID: ";
+                        std::cin >> studentId;
+                        Student* student = manager.findStudent(studentId);
+                        if (student) {
+                            student->displayCourses();
+                        } else {
+                            std::cout << "Student not found.\n";
+                        }
+                        break;
+                    }
+                    default:
+                        std::cout << "Invalid choice. Please try again.\n";
+                }
+                break;
+            }
+            case 5: {
+                std::cout << "Enter student ID to remove: ";
+                std::cin >> studentId;
+                manager.removeStudent(studentId);
+                break;
+            }
+            case 6:{
+                std::cout << "Enter filename (including extension): ";
+                std::cin >> filename;
+                std::cout << "Enter format (txt or csv): ";
+                std::cin >> format;
+                manager.exportData(filename, format);
+                break;
+            }
+            case 0:
+                std::cout << "Exiting program.\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
         }
-        case 2: {
-            system("cls");
-            SinhVien sinhVienMoi;
-            cout<<"---Nhap thong tin sinh vien moi---\n";
-            sinhVienMoi.nhapThongTin();
-            danhSachSinhVien.push_back(sinhVienMoi);
-            cout<<"Xong!\n";
-            system("pause");
-            break;
-        }
-        case 3: {
-            // danhSachSinhVien[0].suaThongTin(danhSachSinhVien);
-            break;
-        }
-        case 4: {
-            // danhSachSinhVien[0].xoaThongTin(danhSachSinhVien);
-            break;
-        }
-        case 5: {
-            // ... them code xuat file diem theo dinh dang CSV
-            break;
-        }
-        case 0:
-            system("cls");
-            cout << "Tam biet!\n";
-            break;
-        default:
-            cout << "Lua chon sai! Input using digit.\n";
-        }
-    } while (luaChon != 0);
+    } while (choice != 0);
 
     return 0;
 }

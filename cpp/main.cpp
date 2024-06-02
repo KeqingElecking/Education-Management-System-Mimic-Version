@@ -52,7 +52,35 @@ int main() {
             break;
         }
         case 3: {
-            // danhSachSinhVien[0].suaThongTin(danhSachSinhVien);
+            void suaThongTin(vector<SinhVien>& danhSachSinhVien) {
+            // Tim sinh vien theo ma so
+            system("cls");
+            string mssvCanSua;
+            cout << "Nhap ma sinh vien can sua: ";
+            cin >> mssvCanSua;
+
+            int indexSinhVien = -1;
+            for (int i = 0; i < danhSachSinhVien.size(); i++) {
+            if (danhSachSinhVien[i].getMSSV() == mssvCanSua) {
+                indexSinhVien = i;
+                break;
+            }
+            }
+        system("cls");
+        if (indexSinhVien != -1) {
+            cout << "Thong tin hien tai cua sinh vien:\n";
+            danhSachSinhVien[indexSinhVien].hienThiThongTin(danhSachSinhVien);
+
+            cout << "\nNhap thong tin moi:\n";
+            danhSachSinhVien[indexSinhVien].nhapThongTin();
+
+            cout << "Sua thong tin sinh vien thanh cong!\n";
+            system("pause");
+        }
+        else {
+            cout << "Khong tim thay sinh vien co ma so " << mssvCanSua << "!\n";
+        }
+    }
             break;
         }
         case 4: {

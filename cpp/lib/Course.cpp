@@ -47,7 +47,7 @@ void Course::calculateGPAAndGrade() {
     } else if (average >= 4.0) {
         GPA = 1.0;
         grade = 'D';
-    } else {
+    } else if(average < 4.0 || midtermScore < 3 || finalScore < 3) {
         GPA = 0.0;
         grade = 'F';
     }

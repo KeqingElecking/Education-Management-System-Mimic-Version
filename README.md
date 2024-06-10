@@ -6,5 +6,6 @@
 - Xóa thông tin sinh viên
 - Xuất file sang định dạng CSV
 
-Có code của C++ trong thư mục cpp
-            C   trong thư mục c_ver2
+Có code của ngôn ngữ:
+C++ trong thư mục cpp
+C   trong thư mục c_ver2

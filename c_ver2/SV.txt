@@ -1,0 +1,5 @@
+20224410   Do         Dang_Hoang_Linh      ET-E9_01   Nam        9.00       6.00       8.70       B         
+20224444   Dang       Nhat_Minh            ET-E9_01   Nam        6.00       9.00       6.10       D         
+20224456   Tran       Nhat_Quang           ET-E9_01   Nam        8.00       8.00       8.00       B         
+20224415   Pham       Viet_Tung	           ET-E9_02   Nam        7.00       7.00       7.00       C         
+1          a          a                    a          a          5.00       5.00       5.00       E

@@ -1,8 +1,8 @@
 #include "Course.hpp"
 #include <iostream>
 
-Course::Course(std::string name, float midterm, float final)
-    : name(name), midtermScore(midterm), finalScore(final) {
+Course::Course(std::string name, float midterm, float final, float coeff)
+    : name(name), midtermScore(midterm), finalScore(final), coeff_midterm(coeff) {
     calculateGPAAndGrade();
 }
 
@@ -15,15 +15,18 @@ void Course::setScores(float midterm, float final) {
     finalScore = final;
     calculateGPAAndGrade();
 }
-
 /**
  * @brief Calculate GPA and grade based on midterm and final score.
  * @return void
  */
 
 void Course::calculateGPAAndGrade() {
-    float average = (midtermScore*0.4 + finalScore*0.6);
-    if (average >= 9.5) {
+    float average = (midtermScore * coeff_midterm + finalScore*(1 - coeff_midterm));
+    if (midtermScore < 3 || finalScore < 3){
+        GPA = 0.0;
+        grade = "F";
+    }
+    else if (average >= 9.5) {
         GPA = 4.0;
         grade = "A+";
     } else if (average >= 8.5) {
@@ -47,7 +50,7 @@ void Course::calculateGPAAndGrade() {
     } else if (average >= 4.0) {
         GPA = 1.0;
         grade = 'D';
-    } else if(average < 4.0 || midtermScore < 3 || finalScore < 3) {
+    } else if(average < 4.0) {
         GPA = 0.0;
         grade = 'F';
     }
@@ -59,7 +62,7 @@ void Course::calculateGPAAndGrade() {
  * @return void
  */
 void Course::display() const {
-    std::cout <<"\t\t"<< name << " - Midterm: " << midtermScore << ", Final: " << finalScore
+    std::cout <<"\t\t"<< name << " - Midterm (" << coeff_midterm << "): " << midtermScore << ", Final: (" << 1 - coeff_midterm << "): " << finalScore
                 << ", GPA: " << GPA << ", Grade: " << grade << std::endl;
 }
 
@@ -69,11 +72,12 @@ float Course::getMidtermScore() const {
 float Course::getFinalScore() const {
     return finalScore;
 }
-
+float Course::getCoeff() const {
+    return coeff_midterm;
+}
 float Course::getGPA() const {
     return GPA;
 }
-
 std::string Course::getGrade() const {
     return grade;
 }

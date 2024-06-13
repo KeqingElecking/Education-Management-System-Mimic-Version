@@ -18,7 +18,6 @@ std::string Student::setId(const std::string& id) {
     this->id = id;
     return this->id;
 }
-
 /**
  * @brief Add course to student.
  * @param course

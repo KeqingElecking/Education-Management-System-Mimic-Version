@@ -29,7 +29,7 @@ int main() {
     StudentManager manager;
     int choice;
     std::string studentId, studentName, courseName;
-    float midterm, final;
+    float midterm, final, coeff_midterm;
     
     std::string filename, format;
 
@@ -68,11 +68,25 @@ int main() {
                     std::cout << "Enter course name (ex: KTLT): ";
                     std::cin.ignore();
                     std::getline(std::cin, courseName);
+                    std::cout << "Enter midterm coefficient (ex: 0.5)";
+                    do{
+                        std::cin >> coeff_midterm;
+                        if (coeff_midterm < 0 || coeff_midterm > 1) std::cout << "Coefficient out of range [0, 1]\nRe-enter midterm coefficient (ex: 0.5)";
+                    }
+                    while (coeff_midterm < 0 || coeff_midterm > 1);
                     std::cout << "Enter midterm score (ex: 9.5): ";
-                    std::cin >> midterm;
+                    do{
+                        std::cin >> midterm;
+                        if (midterm < 0 || midterm > 10) std::cout << "Score out of range [0, 10]\nRe-enter midterm score (ex: 9.5): ";
+                    }
+                    while (midterm < 0 || midterm > 10);
                     std::cout << "Enter final score (ex: 9.5): ";
-                    std::cin >> final;
-                    student->addCourse(Course(courseName, midterm, final));
+                    do{
+                        std::cin >> final;
+                        if (final < 0 || final > 10) std::cout << "Score out of range [0, 10]\nRe-enter final score (ex: 9.5): ";
+                    }
+                    while (final < 0 || final > 10);
+                    student->addCourse(Course(courseName, midterm, final, coeff_midterm));
                     std::cout<<"\tCourse added!\n";
                 } else {
                     std::cout << "Student not found.\n";
@@ -153,6 +167,5 @@ int main() {
                 std::cout << "Invalid choice. Please try again.\n";
         }
     } while (choice != 0);
-
     return 0;
 }

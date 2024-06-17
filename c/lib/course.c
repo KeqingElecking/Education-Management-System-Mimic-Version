@@ -1,10 +1,11 @@
 #include "course.h"
 #include <stdio.h>
 
-void initCourse(Course *course, const char *name, float midterm, float final) {
+void initCourse(Course *course, const char *name, float midterm, float final, float coeff_midterm) {
     strcpy(course->name, name);
     course->midtermScore = midterm;
     course->finalScore = final;
+    course->coeff_midterm = coeff_midterm;
     calculateGPAAndGrade(course);
 }
 
@@ -15,8 +16,11 @@ void setScores(Course *course, float midterm, float final) {
 }
 
 void calculateGPAAndGrade(Course *course) {
-    float average = (course->midtermScore * 0.4) + (course->finalScore * 0.6);
-    if (average >= 8.5) {
+    float average = (course->midtermScore * course->coeff_midterm) + (course->finalScore * (1 - course->coeff_midterm));
+    if (course->midtermScore < 3 || course->finalScore < 3){
+        course->gpa = 0.0;
+        course->grade = 'F';
+    } else if (average >= 8.5) {
         course->gpa = 4.0;
         course->grade = 'A';
     } else if (average >= 7.0) {
@@ -35,6 +39,6 @@ void calculateGPAAndGrade(Course *course) {
 }
 
 void displayCourse(const Course *course) {
-    printf("\t\t%s - Midterm: %.2f, Final: %.2f, GPA: %.2f, Grade: %c\n",
-           course->name, course->midtermScore, course->finalScore, course->gpa, course->grade);
+    printf("\t\t%s - Midterm: %.2f, Final: %.2f, Coeff: %.2f:%.2f, GPA: %.2f, Grade: %c\n",
+           course->name, course->midtermScore, course->finalScore, course->coeff_midterm, 1 - course->coeff_midterm, course->gpa, course->grade);
 }

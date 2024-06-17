@@ -48,7 +48,11 @@ int main() {
             case 2: {
                 system("cls");
                 std::cout << "Enter student ID (ex: 20220001): ";
-                std::cin >> studentId;
+                do
+                {
+                    std::cin >> studentId;
+                    if (manager.findStudent(studentId)) std::cout << "Student already added. Try again!\nEnter student ID (ex: 20220001): ";
+                } while (manager.findStudent(studentId));
                 std::cout << "Enter student name (ex: Elon Musk): ";
                 std::cin.ignore();
                 std::getline(std::cin, studentName);

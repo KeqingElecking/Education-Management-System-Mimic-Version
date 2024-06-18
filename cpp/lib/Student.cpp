@@ -28,6 +28,20 @@ void Student::addCourse(const Course& course) {
 }
 
 /**
+ * @brief Find course in student.
+ * @param courseName
+ * @return int
+ */
+int Student::findCourse(const std::string& courseName) const {
+    for (size_t i = 0; i < courses.size(); ++i) {
+        if (courses[i].getName() == courseName) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/**
  * @brief Edit course of student.
  * @param courseName
  * @param midterm

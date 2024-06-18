@@ -136,18 +136,23 @@ int main() {
                             std::cout << "Enter course name: ";
                             std::cin.ignore();
                             std::getline(std::cin, courseName);
-                            std::cout << "Enter new midterm score: ";
-                            std::cin >> midterm;
-                            std::cout << "Enter new final score: ";
-                            std::cin >> final;
-                            student->editCourse(courseName, midterm, final);
-                            std::cout<<"\tCourse edited!\n";
-                        
+                            if(student->findCourse(courseName) == -1){
+                                std::cout << "Course not found.\n";
+                                break;
+                            }
+                            else{
+                                std::cout << "Enter new midterm score: ";
+                                std::cin >> midterm;
+                                std::cout << "Enter new final score: ";
+                                std::cin >> final;
+                                student->editCourse(courseName, midterm, final);
+                                std::cout<<"\tCourse edited!\n";
+                            }
                         } else {
                             std::cout << "Student not found.\n";
                         }
                         break;
-                    }
+                    }   
                     default:
                         std::cout << "Invalid choice. Please try again.\n";
                 }

@@ -27,11 +27,6 @@ void StudentManager::displayMenu() const {
 }
 
 /**
- * @brief 
- * 
- */
-
-/**
  * @brief Display all students and their courses' details.
  * @return void
  */

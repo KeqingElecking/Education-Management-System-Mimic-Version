@@ -21,6 +21,7 @@ public:
     
 
     void addCourse(const Course& course);
+    int findCourse(const std::string& courseName) const;
     void editCourse(const std::string& courseName, float midterm, float final);
     void removeCourse(const std::string& courseName);
     void displayCourses() const;

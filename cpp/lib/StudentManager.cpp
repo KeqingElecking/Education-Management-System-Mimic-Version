@@ -11,6 +11,21 @@ bool StudentManager::isEmpty() const {
     return students.empty();
 }
 
+/** @brief Display the main menu for user input.
+ *  @return void*/
+void StudentManager::displayMenu() const {
+    std::cout   << "*************************\n"
+                << "Student Management System\n"
+                << "*************************\n"
+                << "1. Display all students\n"
+                << "2. Add a student\n"
+                << "3. Add a course and scores for a student\n"
+                << "4. Edit a student's course scores\n"
+                << "5. Remove a student\n"
+                << "6. Export data to file\n"
+                << "0. Exit\n";
+}
+
 /**
  * @brief 
  * 

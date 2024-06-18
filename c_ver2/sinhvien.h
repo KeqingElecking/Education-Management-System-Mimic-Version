@@ -35,7 +35,6 @@ void nhapDiem(struct DiemMH* diem) {
 	scanf("%f", &diem->QT);
 	printf("CK: ");
 	scanf("%f", &diem->CK);
-	printf("TB: ");
 	diem->DiemTB = (diem->QT*0.3 + diem->CK*0.7);
     if(diem->DiemTB >= 9) {
         strcpy(diem->DiemHocPhan, "A");
@@ -79,6 +78,8 @@ struct SinhVien nhapSV() {
 	printf("Gioi tinh: ");
 	scanf("%s", &sv.gioiTinh);
 	nhapDiem(&sv.diem);
+	printf("\nNhap sinh vien thanh cong!\n");
+	system("pause");
 	return sv;
 }
 

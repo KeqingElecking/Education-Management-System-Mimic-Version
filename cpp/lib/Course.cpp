@@ -1,5 +1,6 @@
 #include "Course.hpp"
 #include <iostream>
+#include <iomanip>
 
 Course::Course(std::string name, float midterm, float final, float coeff)
     : name(name), midtermScore(midterm), finalScore(final), coeff_midterm(coeff) {

@@ -67,7 +67,7 @@ int main() {
                     std::cout << "Enter midterm coefficient (ex: 0.5): ";
                     do{
                         std::cin >> coeff_midterm;
-                        if (coeff_midterm < 0 || coeff_midterm > 1) std::cout << "Coefficient out of range [0, 1]\nRe-enter midterm coefficient (ex: 0.5)";
+                        if (coeff_midterm <= 0 || coeff_midterm >= 1) std::cout << "Coefficient out of range (0, 1)\nRe-enter midterm coefficient [0.1 - 0.9] (ex: 0.4)";
                     }
                     while (coeff_midterm < 0 || coeff_midterm > 1);
                     std::cout << "Enter midterm score (ex: 9.5): ";

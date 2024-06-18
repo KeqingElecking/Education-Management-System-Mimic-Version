@@ -64,9 +64,8 @@ void Student::removeCourse(const std::string& courseName) {
  * @return void
  */
 void Student::displayCourses() const {
-    std::cout << "\tCourses for " << name << ":\n";
     if(courses.empty()) {
-        std::cout << "\tN/A\n";
+        std::cout << "N/A\n";
         return;
     }
     for (const auto& course : courses) {

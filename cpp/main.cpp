@@ -26,12 +26,16 @@ void displayMenu() {
 }
 
 int main() {
-    StudentManager manager;
-    int choice;
-    std::string studentId, studentName, courseName;
-    float midterm, final, coeff_midterm;
+    StudentManager manager; // Create a Student Manager object.
     
+    int choice;
+    std::string studentId, studentName, courseName; // Declare variables to store user input.
+    
+    float midterm, final, coeff_midterm;
+
     std::string filename, format;
+    // Import data from file (only CSV format is supported for now)
+    manager.importData("data/danhsach1.csv");
 
     do {
         displayMenu();
@@ -64,7 +68,6 @@ int main() {
                 system("cls");
                 manager.displayAllStudents();
                 if(manager.isEmpty()) break;
-                std::cout << "--------------------------------\n";
                 std::cout << "Enter student ID: ";
                 std::cin >> studentId;
                 Student* student = manager.findStudent(studentId);
@@ -113,7 +116,6 @@ int main() {
                     case 1: { 
                         manager.displayAllStudents();
                         if(manager.isEmpty()) break;
-                        std::cout << "--------------------------------\n";
                         std::cout << "Enter student ID: ";
                         std::cin >> studentId;
                         Student* student = manager.findStudent(studentId);
@@ -134,12 +136,24 @@ int main() {
                     case 2: {
                         manager.displayAllStudents();
                         if(manager.isEmpty()) break;
-                        std::cout << "--------------------------------\n";
                         std::cout << "Enter student ID: ";
                         std::cin >> studentId;
                         Student* student = manager.findStudent(studentId);
                         if (student) {
-                            student->displayCourses();
+                            if(student->getCourses().empty()){
+                                std::cout << "No course found.\n";
+                                break;
+                            }
+                            std::cout << "Enter course name: ";
+                            std::cin.ignore();
+                            std::getline(std::cin, courseName);
+                            std::cout << "Enter new midterm score: ";
+                            std::cin >> midterm;
+                            std::cout << "Enter new final score: ";
+                            std::cin >> final;
+                            student->editCourse(courseName, midterm, final);
+                            std::cout<<"\tCourse edited!\n";
+                        
                         } else {
                             std::cout << "Student not found.\n";
                         }

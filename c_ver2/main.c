@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "sinhvien.h"
 
 int main() {
@@ -33,9 +34,11 @@ int main() {
 			case 1:
 				sv = nhapSV();
 				dssv[slsv++] = sv;
+				system("cls");
 				break;
 				
 			case 2:
+				system("cls");
 				hienThiDSSV(dssv, slsv);
 				break;
 				

@@ -116,7 +116,7 @@ void StudentManager::importData(const std::string& filename) {
             std::string studentId = tokens[0];
             std::string studentName = tokens[1];
             Student student(studentId, studentName);
-            for (size_t i = 2; i < tokens.size(); i += 5) {
+            for (size_t i = 2; i < tokens.size(); i += 4) {
                 Course course(tokens[i], std::stof(tokens[i + 1]), std::stof(tokens[i + 2]), std::stof(tokens[i + 3]));
                 student.addCourse(course);
             }

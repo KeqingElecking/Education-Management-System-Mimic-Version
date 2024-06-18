@@ -70,5 +70,8 @@ void Student::displayCourses() const {
     }
     for (const auto& course : courses) {
         course.display();
+        if(&course != &courses.back()) {
+            std::cout << std::setw(30) << ' ';
+        }
     }
 }

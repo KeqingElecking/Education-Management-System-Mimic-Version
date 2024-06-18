@@ -10,21 +10,6 @@ Sinh viên:
 #include "lib/Student.cpp"
 #include "lib/Course.cpp"
 
-/** @brief Display the main menu for user input.
- *  @return void*/
-void displayMenu() {
-    std::cout   << "*************************\n"
-                << "Student Management System\n"
-                << "*************************\n"
-                << "1. Display all students\n"
-                << "2. Add a student\n"
-                << "3. Add a course and scores for a student\n"
-                << "4. Edit a student's course scores\n"
-                << "5. Remove a student\n"
-                << "6. Export data to file\n"
-                << "0. Exit\n";
-}
-
 int main() {
     StudentManager manager; // Create a Student Manager object.
     
@@ -38,7 +23,7 @@ int main() {
     manager.importData("data/danhsach1.csv");
 
     do {
-        displayMenu();
+        manager.displayMenu();
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -55,6 +40,10 @@ int main() {
                 do
                 {
                     std::cin >> studentId;
+                    while (stoi(studentId) < 20170000 || stoi(studentId) > 20239999){
+                        std::cout << "studentId out of a range [20170000; 20239999]\nEnter student ID (ex: 20220001): ";
+                        std::cin >> studentId;
+                    }
                     if (manager.findStudent(studentId)) std::cout << "Student already added. Try again!\nEnter student ID (ex: 20220001): ";
                 } while (manager.findStudent(studentId));
                 std::cout << "Enter student name (ex: Elon Musk): ";
@@ -75,7 +64,7 @@ int main() {
                     std::cout << "Enter course name (ex: KTLT): ";
                     std::cin.ignore();
                     std::getline(std::cin, courseName);
-                    std::cout << "Enter midterm coefficient (ex: 0.5)";
+                    std::cout << "Enter midterm coefficient (ex: 0.5): ";
                     do{
                         std::cin >> coeff_midterm;
                         if (coeff_midterm < 0 || coeff_midterm > 1) std::cout << "Coefficient out of range [0, 1]\nRe-enter midterm coefficient (ex: 0.5)";

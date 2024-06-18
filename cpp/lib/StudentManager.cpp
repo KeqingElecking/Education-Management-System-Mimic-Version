@@ -11,6 +11,21 @@ bool StudentManager::isEmpty() const {
     return students.empty();
 }
 
+/** @brief Display the main menu for user input.
+ *  @return void*/
+void StudentManager::displayMenu() const {
+    std::cout   << "*************************\n"
+                << "Student Management System\n"
+                << "*************************\n"
+                << "1. Display all students\n"
+                << "2. Add a student\n"
+                << "3. Add a course and scores for a student\n"
+                << "4. Edit a student's course scores\n"
+                << "5. Remove a student\n"
+                << "6. Export data to file\n"
+                << "0. Exit\n";
+}
+
 /**
  * @brief 
  * 
@@ -101,7 +116,7 @@ void StudentManager::importData(const std::string& filename) {
             std::string studentId = tokens[0];
             std::string studentName = tokens[1];
             Student student(studentId, studentName);
-            for (size_t i = 2; i < tokens.size(); i += 5) {
+            for (size_t i = 2; i < tokens.size(); i += 4) {
                 Course course(tokens[i], std::stof(tokens[i + 1]), std::stof(tokens[i + 2]), std::stof(tokens[i + 3]));
                 student.addCourse(course);
             }

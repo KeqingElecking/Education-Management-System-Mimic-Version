@@ -63,7 +63,8 @@ void Course::calculateGPAAndGrade() {
  * @return void
  */
 void Course::display() const {
-    std::cout << std::left << std::setw(20) << name << std::setw(20) << midtermScore << std::setw(20) << finalScore << std::setw(20) << GPA << std::setw(20) << grade << std::endl;
+    std::cout << std::left << std::setw(20) << name << std::setw(20) << midtermScore << std::setw(20) << finalScore << std::setw(20)
+                << GPA << std::setw(20) << grade << std::endl;
 }
 
 float Course::getMidtermScore() const {

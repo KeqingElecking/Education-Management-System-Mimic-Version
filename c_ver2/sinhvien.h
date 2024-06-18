@@ -59,8 +59,10 @@ void nhapDiem(struct DiemMH* diem) {
 void nhapHoTen(struct HoTen* ten) {
 	printf("Ho: ");
 	scanf("%s", ten->ho);
+	fflush(stdin);
 	printf("Ten (VD:Viet_Tung): ");
 	scanf("%s", ten->ten);
+	fflush(stdin);
 }
 
 /**

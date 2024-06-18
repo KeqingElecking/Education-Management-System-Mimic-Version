@@ -97,11 +97,3 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
     file.close();
     std::cout << "Data exported successfully to " << filename << '!' << std::endl;
 }
-/**
- * @brief Compare student by student name for arrangement.
- * @param student1name, student2name
- * @return bool
- */
-bool operator<(const Student& student1name, const Student& student2name){
-    //for name arrangement
-}

@@ -10,7 +10,6 @@ private:
 
 public:
     bool isEmpty() const;
-    friend bool operator<(const Student& student1, const Student& student2);//name compare for arrangement
     void addStudent(const Student& student);
     void removeStudent(const std::string& studentId);
     Student* findStudent(const std::string& studentId);

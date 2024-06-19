@@ -17,6 +17,7 @@ int main() {
     std::string studentId, studentName, courseName; // Declare variables to store user input.
     
     float midterm, final, coeff_midterm;
+    int credits;
 
     std::string filename, format;
     // Import data from file (only CSV format is supported for now)
@@ -30,6 +31,7 @@ int main() {
         switch (choice) {
             case 1:
                 system("cls");
+                manager.sort_by_CPA();
                 manager.displayAllStudents();
                 system("pause");
                 system("cls");
@@ -68,6 +70,12 @@ int main() {
                         std::cout << "Course already added. Try again!\n";
                         break;
                     }
+                    std::cout << "Enter credits: ";
+                    do{
+                        std::cin >> credits;
+                        if (credits <= 0) std::cout << "No such course with zero or negative credits\nRe-enter credits: ";
+                    }
+                    while (credits <= 0);
                     std::cout << "Enter midterm coefficient (ex: 0.5): ";
                     do{
                         std::cin >> coeff_midterm;
@@ -86,7 +94,7 @@ int main() {
                         if (final < 0 || final > 10) std::cout << "Score out of range [0, 10]\nRe-enter final score (ex: 9.5): ";
                     }
                     while (final < 0 || final > 10);
-                    student->addCourse(Course(courseName, midterm, final, coeff_midterm));
+                    student->addCourse(Course(courseName, midterm, final, coeff_midterm, credits));
                     std::cout<<"\tCourse added!\n";
                 } else {
                     std::cout << "Student not found.\n";

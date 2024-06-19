@@ -34,7 +34,7 @@ void StudentManager::displayAllStudents() const {
     std::cout << std::string(115, '-') << std::endl;
     std::cout << std::string(50, ' ') << "Students List" << std::endl;
     std::cout << std::string(115, '-') << std::endl;
-    std::cout << std::left << std::setw(10) << "ID" << std::setw(20) << "Name" << std::setw(20) << "Courses" << std::setw(20) << "Midterm" << std::setw(20) << "Final" << std::setw(20) << "GPA" << std::setw(20) << "Grade" << std::endl;
+    std::cout << std::left << std::setw(10) << "ID" << std::setw(20) << "Name" << std::setw(20) << "Courses" << std::setw(10) << "Midterm" << std::setw(10) << "Final" << std::setw(10) << "GPA" << std::setw(10) << "Grade" << std::setw(10) << "Credits" << std::endl;
     std::cout << std::string(115, '-') << std::endl;
     if (students.empty()) {
         std::cout << "No students available.\n";
@@ -111,8 +111,8 @@ void StudentManager::importData(const std::string& filename) {
             std::string studentId = tokens[0];
             std::string studentName = tokens[1];
             Student student(studentId, studentName);
-            for (size_t i = 2; i < tokens.size(); i += 4) {
-                Course course(tokens[i], std::stof(tokens[i + 1]), std::stof(tokens[i + 2]), std::stof(tokens[i + 3]));
+            for (size_t i = 2; i < tokens.size(); i += 5) {
+                Course course(tokens[i], std::stof(tokens[i + 1]), std::stof(tokens[i + 2]), std::stof(tokens[i + 3]), std::stof(tokens[i + 4]));
                 student.addCourse(course);
             }
             
@@ -142,7 +142,7 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
         for (const auto& student : students) {
             file << student.getId() << "," << student.getName();
             for (const auto& course : student.getCourses()) {
-                file << "," << course.getName() << "," << course.getMidtermScore() << "," << course.getFinalScore() << "," << course.getCoeff();
+                file << "," << course.getName() << "," << course.getMidtermScore() << "," << course.getFinalScore() << "," << course.getCoeff() << "," << course.getcredits();
             }
             file << "\n";
         }
@@ -151,7 +151,7 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
             file << "Student ID: " << student.getId() << ", Name: " << student.getName() << "\n";
             for (const auto& course : student.getCourses()) {
                 file << "  Course: " << course.getName() << ", Midterm: " << course.getMidtermScore() << ", Final: " << course.getFinalScore() 
-                                << ", GPA: " << course.getGPA() << ", Grade: " << course.getGrade() << "\n";
+                                << ", GPA: " << course.getGPA() << ", Grade: " << course.getGrade() << ", Credits: " << course.getcredits() << "\n";
             }
             file << "\n";
         }
@@ -159,4 +159,16 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
 
     file.close();
     std::cout << "Data exported successfully to " << filename << '!' << std::endl;
+}
+void StudentManager::sort_by_CPA() {
+    std::vector<Student>::iterator p;
+    for (p = std::next(students.begin()); p < students.end(); p++) {
+        Student key = *p;
+        std::vector<Student>::iterator j = p;
+        while (j != students.begin() && (key < *(std::prev(j)))) {
+            *j = *(std::prev(j));
+            --j;
+        }
+        *j = key;
+    }
 }

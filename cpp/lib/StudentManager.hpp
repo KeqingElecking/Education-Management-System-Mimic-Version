@@ -16,4 +16,5 @@ public:
     void displayAllStudents() const;
     void importData(const std::string& filename);
     void exportData(const std::string& filename, const std::string& format) const;
+    void sort_by_CPA();
 };

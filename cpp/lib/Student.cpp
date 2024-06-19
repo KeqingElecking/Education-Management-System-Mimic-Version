@@ -89,4 +89,21 @@ void Student::displayCourses() const {
             std::cout << std::setw(30) << ' ';
         }
     }
+    std::cout << std::setw(20) << "Total CPA" 
+              << std::setw(60) << std::fixed << std::setprecision(2) << totalCPA() 
+              << std::endl;
+}
+float Student::totalCPA() const {
+    float S = 0;
+    int total_credits = 0;
+    std::vector<Course>::const_iterator p;
+    for (p = courses.begin(); p < courses.end(); p++) {
+        S += p->getGPA() * p->getcredits();
+        total_credits += p->getcredits();
+    }
+    return (total_credits > 0) ? (S / total_credits) : 0.0f;
+}
+bool Student::operator<(const Student& student_2) const {
+    if (totalCPA() < student_2.totalCPA()) return true;
+    return false;
 }

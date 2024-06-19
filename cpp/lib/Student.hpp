@@ -24,5 +24,7 @@ public:
     int findCourse(const std::string& courseName) const;
     void editCourse(const std::string& courseName, float midterm, float final);
     void removeCourse(const std::string& courseName);
+    float totalCPA() const;
     void displayCourses() const;
+    bool operator<(const Student& student_2) const;
 };

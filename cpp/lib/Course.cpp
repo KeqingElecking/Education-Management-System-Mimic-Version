@@ -2,8 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
-Course::Course(std::string name, float midterm, float final, float coeff)
-    : name(name), midtermScore(midterm), finalScore(final), coeff_midterm(coeff) {
+Course::Course(std::string name, float midterm, float final, float coeff, int credits)
+    : name(name), midtermScore(midterm), finalScore(final), coeff_midterm(coeff), credits(credits) {
     calculateGPAAndGrade();
 }
 
@@ -63,8 +63,8 @@ void Course::calculateGPAAndGrade() {
  * @return void
  */
 void Course::display() const {
-    std::cout << std::left << std::setw(20) << name << std::setw(20) << midtermScore << std::setw(20) << finalScore << std::setw(20)
-                << GPA << std::setw(20) << grade << std::endl;
+    std::cout << std::left << std::setw(20) << name << std::setw(10) << midtermScore << std::setw(10) << finalScore << std::setw(10)
+                << GPA << std::setw(10) << grade << std::setw(10) << credits << std::endl;
 }
 
 float Course::getMidtermScore() const {
@@ -78,6 +78,9 @@ float Course::getCoeff() const {
 }
 float Course::getGPA() const {
     return GPA;
+}
+int Course::getcredits() const {
+    return credits;
 }
 std::string Course::getGrade() const {
     return grade;

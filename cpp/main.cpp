@@ -64,6 +64,10 @@ int main() {
                     std::cout << "Enter course name (ex: KTLT): ";
                     std::cin.ignore();
                     std::getline(std::cin, courseName);
+                    if(student->findCourse(courseName) != -1){
+                        std::cout << "Course already added. Try again!\n";
+                        break;
+                    }
                     std::cout << "Enter midterm coefficient (ex: 0.5): ";
                     do{
                         std::cin >> coeff_midterm;

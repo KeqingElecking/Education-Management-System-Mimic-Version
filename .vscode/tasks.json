@@ -10,7 +10,7 @@
                 "${fileDirname}\\main.cpp",
                 "-L${fileDirname}",
                 "-o",
-                "..\\StudentManager.exe",
+                "${fileDirname}\\StudentManager.exe",
                 "..\\resources\\appicon.res"
             ],
             "options": {
@@ -35,7 +35,7 @@
                 "${fileDirname}\\main.cpp",
                 "-L${fileDirname}",
                 "-o",
-                "..\\StudentManager.exe",
+                "${fileDirname}\\StudentManager.exe",
                 "..\\resources\\appicon.res"
             ],
             "options": {

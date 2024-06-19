@@ -1,0 +1,18 @@
+Student ID: 20224444, Name: Dang Nhat Minh
+  Course: KTLT, Midterm: 8, Final: 9, GPA: 4, Grade: A, Credits: 3
+  Course: Giai Tich 1, Midterm: 3.5, Final: 3, GPA: 0, Grade: F, Credits: 4
+  ------------------------------------------Total CPA: 1.71
+
+Student ID: 20224410, Name: Do Dang Hoang Linh
+  Course: KTLT, Midterm: 9.00, Final: 6.00, GPA: 3.00, Grade: B, Credits: 3
+  Course: LTTT, Midterm: 8.00, Final: 8.00, GPA: 3.50, Grade: B+, Credits: 2
+  ------------------------------------------Total CPA: 3.20
+
+Student ID: 20224456, Name: Tran Nhat Quang
+  Course: KTLT, Midterm: 8.00, Final: 8.00, GPA: 3.50, Grade: B+, Credits: 3
+  ------------------------------------------Total CPA: 3.50
+
+Student ID: 20224415, Name: Pham Viet Tung
+  Course: KTLT, Midterm: 9.50, Final: 9.00, GPA: 4.00, Grade: A, Credits: 3
+  ------------------------------------------Total CPA: 4.00
+

@@ -132,7 +132,7 @@ void StudentManager::importData(const std::string& filename) {
  * @return void
  */
 void StudentManager::exportData(const std::string& filename, const std::string& format) const {
-    std::ofstream file("../" + filename);
+    std::ofstream file("../data/" + filename);
     if (!file.is_open()) {
         std::cout << "Failed to open file.\n";
         return;
@@ -153,6 +153,7 @@ void StudentManager::exportData(const std::string& filename, const std::string& 
                 file << "  Course: " << course.getName() << ", Midterm: " << course.getMidtermScore() << ", Final: " << course.getFinalScore() 
                                 << ", GPA: " << course.getGPA() << ", Grade: " << course.getGrade() << ", Credits: " << course.getcredits() << "\n";
             }
+            file << "  ------------------------------------------Total CPA: " << std::fixed << std::setprecision(2) << student.totalCPA() << "\n";
             file << "\n";
         }
     }

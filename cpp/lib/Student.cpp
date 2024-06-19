@@ -89,8 +89,8 @@ void Student::displayCourses() const {
             std::cout << std::setw(30) << ' ';
         }
     }
-    std::cout << std::setw(20) << "Total CPA" 
-              << std::setw(60) << std::fixed << std::setprecision(2) << totalCPA() 
+    std::cout << std::setw(100) << ' ' << "Total CPA: " 
+              << std::fixed << std::setprecision(2) << totalCPA() 
               << std::endl;
 }
 float Student::totalCPA() const {

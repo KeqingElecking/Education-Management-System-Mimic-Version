@@ -181,6 +181,7 @@ int main() {
                 std::cin >> filename;
                 std::cout << "Enter format (txt or csv): ";
                 std::cin >> format;
+                manager.sort_by_CPA();
                 manager.exportData(filename, format);
                 break;
             }

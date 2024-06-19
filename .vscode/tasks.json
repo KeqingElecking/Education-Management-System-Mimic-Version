@@ -10,8 +10,8 @@
                 "${fileDirname}\\main.cpp",
                 "-L${fileDirname}",
                 "-o",
-                "${fileDirname}\\StudentManager.exe",
-                "resources\\appicon.res"
+                "..\\StudentManager.exe",
+                "..\\resources\\appicon.res"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -35,8 +35,8 @@
                 "${fileDirname}\\main.cpp",
                 "-L${fileDirname}",
                 "-o",
-                "${fileDirname}\\StudentManager.exe"
-                "resources\\appicon.res"
+                "..\\StudentManager.exe",
+                "..\\resources\\appicon.res"
             ],
             "options": {
                 "cwd": "${fileDirname}"

@@ -6,9 +6,9 @@ Sinh viên:
     4. Trần Nhật Quang - 20224456
 */
 #include <iostream>
-#include "lib/StudentManager.cpp"
-#include "lib/Student.cpp"
-#include "lib/Course.cpp"
+#include "../lib/StudentManager.cpp"
+#include "../lib/Student.cpp"
+#include "../lib/Course.cpp"
 
 int main() {
     StudentManager manager; // Create a Student Manager object.
@@ -20,7 +20,7 @@ int main() {
 
     std::string filename, format;
     // Import data from file (only CSV format is supported for now)
-    manager.importData("data/danhsach1.csv");
+    manager.importData("../data/danhsach1.csv");
 
     do {
         manager.displayMenu();

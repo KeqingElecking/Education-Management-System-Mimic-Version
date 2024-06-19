@@ -1,5 +1,6 @@
-#include "course.h"
+#include "../lib/course.h"
 #include <stdio.h>
+#include <string.h>
 
 void initCourse(Course *course, const char *name, float midterm, float final, float coeff_midterm) {
     strcpy(course->name, name);

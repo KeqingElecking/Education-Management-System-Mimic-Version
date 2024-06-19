@@ -1,7 +1,7 @@
 //Simplified version of the C++ code
 
-#include "lib/student.c"
-#include "lib/course.c"
+#include "src/student.c"
+#include "src/course.c"
 #include <stdio.h>
 
 int main() {

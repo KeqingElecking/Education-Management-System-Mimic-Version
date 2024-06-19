@@ -1,0 +1,1 @@
+gcc main.c src/course.c src/student.c -o main -Ilib -Wall -Wextra -Wpedantic

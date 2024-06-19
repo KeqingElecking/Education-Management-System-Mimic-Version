@@ -1,4 +1,4 @@
-#include "student.h"
+#include "../lib/student.h"
 #include <stdio.h>
 #include <string.h>
 

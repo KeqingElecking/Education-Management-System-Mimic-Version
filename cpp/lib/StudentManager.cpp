@@ -132,7 +132,7 @@ void StudentManager::importData(const std::string& filename) {
  * @return void
  */
 void StudentManager::exportData(const std::string& filename, const std::string& format) const {
-    std::ofstream file(filename);
+    std::ofstream file("../" + filename);
     if (!file.is_open()) {
         std::cout << "Failed to open file.\n";
         return;
